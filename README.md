@@ -1,0 +1,2 @@
+# Driver-Drowsiness-Detection-with-real-time-monitoring-and-historical-tracking
+The project Driver Drowsiness Detection is developed to reduce the rate of accidents due to drowsy conditions of driver. It is developed by using Python for all backend and connected to the frontend by using flask framework of python.
