@@ -1,0 +1,152 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Drowsiness Detection</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar">
+        <div class="nav-group">
+            <div id="home-button" class="button glow-on-hover" onclick="openhome()">Home</div>
+            <div id="about-us-button" class="button glow-on-hover" onclick="openaboutus()">About Us</div>
+            <div id="contact-us-button" class="button glow-on-hover" onclick="openContactUs()">Contact Us</div>
+        </div>
+        <div class="userInfo">{% if 'user_name' in session %}
+            <p id="us">Welcome, {{ session['user_name'] }}!</p>
+            {% endif %}
+
+            {% if 'user_name' in session %}
+            <a href="{{ url_for('mainf') }}" ><img src="static/logout.png" alt=""></a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Content Container -->
+    <div id="content-container">
+        <div id="heading">Driver Drowsiness Detection</div>
+        <div id="video-container">
+            <img id="video" src="{{ url_for('video_feed') }}" alt="Video Stream" width="640" height="480">
+            <!-- Button to check performance -->
+            <div id="check-performance-container">
+                <button class="button" onclick="checkPerformance()">Check Performance of Driver</button>
+            </div>
+
+            <!-- Container for the performance information -->
+            <div id="performance-info-container" style="display: none;">
+                <!-- Statistics Section -->
+                <div id="statistics-container">
+                    <h2>Performance of Driver:</h2>
+                    <p>Number of Yawning Events: <span id="yawning-events"></span></p>
+                    <p>Number of Sleepy Events: <span id="sleepy-events"></span></p>
+                    <p>Total Events: <span id="total-events"></span></p><br>
+                    <button onclick="refreshStatistics()">Refresh</button>
+                </div>
+                <!-- Display the bar chart -->
+                <div id="bar-chart-container">
+                    <h2>Bar Chart:</h2>
+                    <canvas id="bar-chart"></canvas>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Script for Contact Us button -->
+    <script>
+        function openhome() {
+            window.location.href = "/home";
+        }
+
+        function openaboutus() {
+            window.location.href = "/about";
+        }
+
+        function openContactUs() {
+            window.location.href = "/contact";
+        }
+
+        // Function to check the performance of the driver
+        function checkPerformance() {
+            // Show the performance information container
+            document.getElementById('performance-info-container').style.display = 'block';
+
+            // Hide the check performance button
+            document.getElementById('check-performance-container').style.display = 'none';
+
+            // Fetch latest statistics and update the UI
+            refreshStatistics();
+        }
+
+        function refreshStatistics() {
+            fetch('/latest_statistics')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('yawning-events').textContent = data.yawning_events;
+                    document.getElementById('sleepy-events').textContent = data.sleepy_events;
+                    document.getElementById('total-events').textContent = data.total_events;
+
+                    // Update the bar chart
+                    updateBarChart(data.yawning_events, data.sleepy_events);
+                })
+                .catch(error => console.error('Error fetching latest statistics:', error));
+        }
+
+        // Connect to the WebSocket server
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Listen for 'update_chart' event from the server
+        socket.on('update_chart', function (data) {
+            // Update the bar chart with new data
+            updateBarChart(data.yawning_events, data.sleepy_events);
+        });
+
+        // Function to update the bar chart
+        function updateBarChart(yawningEvents, sleepyEvents) {
+            var ctx = document.getElementById('bar-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Yawning', 'Sleepy'],
+                    datasets: [{
+                        label: 'Number of Events',
+                        data: [yawningEvents, sleepyEvents],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    <!-- Add this line to include Chart.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+
+</body>
+
+</html>

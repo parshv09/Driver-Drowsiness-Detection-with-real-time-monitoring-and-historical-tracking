@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Driver Drowsiness Detection</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/style_abt.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar">
+        <div id="home-button" class="button glow-on-hover" onclick="openhome()">Home</div>
+        <div id="about-us-button" class="button glow-on-hover" onclick="openaboutus()">About Us</div>
+        <div id="contact-us-button" class="button glow-on-hover" onclick="openContactUs()">Contact Us</div>
+    </div>
+
+    <!-- Content Container -->
+    <div id="content-container">
+        <div id="heading">About Us</div>
+        <div id="about-us-content">
+            <p>Welcome to our Driver Drowsiness Detection system! We are dedicated to ensuring the safety of drivers by providing an innovative solution that detects signs of drowsiness and alerts the driver in real-time. Our technology is designed to enhance road safety and prevent accidents caused by driver fatigue.</p>
+            <p>At Driver Drowsiness Detection, we believe in leveraging cutting-edge technologies to make a positive impact on the world. Our team is passionate about creating solutions that contribute to a safer and more secure driving experience for everyone.</p>
+        </div>
+    </div>
+
+    <!-- Script for About Us button -->
+    <script>
+        function openhome() {
+            window.location.href = '/home';
+        }
+
+        function openaboutus() {
+            window.location.href = '/about';
+        }
+
+        function openContactUs() {
+            window.location.href = '/contact'; 
+        }
+    </script>
+</body>
+</html>

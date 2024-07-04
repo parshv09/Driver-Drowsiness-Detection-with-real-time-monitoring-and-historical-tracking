@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Form </title>
+  <link rel="stylesheet" href="/static/style_reg.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <form action="register" method="POST">
+      <h2>Register</h2>
+      <div class="input-field">
+        <input type="text" name="name" required>
+        <label>Enter your Full Name</label>
+      </div>
+      <div class="input-field">
+        <input type="text" name="email" required>
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Set your password</label>
+      </div>
+      <button type="submit">Register</button>
+      <div class="login">
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <div>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+              {% for category, message in messages %}
+                {% if category == 'error' %}
+                  <li class="alert alert-danger">{{ message }}</li>
+                {% else %}
+                  <li class="alert alert-success">{{ message }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

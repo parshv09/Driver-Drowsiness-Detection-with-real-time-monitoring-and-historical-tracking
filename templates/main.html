@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Awareness System</title>
+    <link rel="stylesheet" href="/static/style_main.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Driver Drowsiness Detection</div>
+        <nav>
+            <div id="home-button" class="button glow-on-hover" onclick="openhome()">Home</div>
+            <div id="signup-button" class="button glow-on-hover" onclick="opensignup()">Sign Up</div>
+            <div id="login-button" class="button glow-on-hover" onclick="openlogin()">Login</div>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            <h1>Stay Alert, Drive Safe, Save Lives</h1>
+            <h4>Our driver drowsiness detection system uses advanced technology to monitor your alertness and prevent
+                accidents. With real-time alerts and intelligent features, you can trust our system to keep you safe on
+                the road.</h4>
+            <div id="learn-button" class="button glow-on-hover" onclick="openlearn()">Login</div>
+        </div>
+    </main>
+    <!-- Background Video -->
+    <video autoplay muted loop id="bg-video">
+        <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
+    </video>
+
+    <!-- Script for Navigation -->
+    <script>
+        function openhome() {
+            window.location.href = '/';
+        }
+
+        function openlogin() {
+            window.location.href = '/login';
+        }
+
+        function opensignup() {
+            window.location.href = '/register';
+        }
+
+        function openlearn() {
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+
+</html>

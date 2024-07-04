@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #000;
+    background-color: #ffffff; /* Set the background color to match the home page */
+    background-image: url('smime.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-size: 2300px; /* Adjust the background size */
+    background-position: center;
+}
+
+#navbar {
+    background-color: #000000;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 15px; /* Add margin between buttons */
+    color: #fff;
+    text-decoration: none;
+}
+
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+}
+
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+#content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Add margin to create space between navbar and content */
+}
+
+#heading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #000000;
+    padding: 15px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#contact-info {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+#contact-form {
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.13); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6); 
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea {
+    width: calc(100% - 20px); /* Adjusted width to include consistent margins */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.07); /* Glassmorphism effect */
+}
+
+#submit-button {
+    background-color: #ffffff;
+    color: #fff; /* Text color white */
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Added transition for smooth hover effect */
+}
+
+#submit-button:hover {
+    background-color: #080710;
+    border-radius: 10px; /* Ensure the border-radius stays fixed on hover */
+}
