@@ -1,54 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Awareness System</title>
-    <link rel="stylesheet" href="/static/style_main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Awareness System</title>
+  <link rel="stylesheet" href="/static/style_main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 
 <body>
-    <header>
-        <div class="logo">Driver Drowsiness Detection</div>
-        <nav>
-            <div id="home-button" class="button glow-on-hover" onclick="openhome()">Home</div>
-            <div id="signup-button" class="button glow-on-hover" onclick="opensignup()">Sign Up</div>
-            <div id="login-button" class="button glow-on-hover" onclick="openlogin()">Login</div>
-        </nav>
-    </header>
-    <main>
-        <div class="content">
-            <h1>Stay Alert, Drive Safe, Save Lives</h1>
-            <h4>Our driver drowsiness detection system uses advanced technology to monitor your alertness and prevent
-                accidents. With real-time alerts and intelligent features, you can trust our system to keep you safe on
-                the road.</h4>
-            <div id="learn-button" class="button glow-on-hover" onclick="openlearn()">Login</div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">NOVA<span>RIDE</span></div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About Us</a>
+    </nav>
+    <div class="login-btn">
+      <a href="/login">Login</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="feature-badges">
+      <span><i class="check-icon">✔</i> Real-time Detection</span>
+      <span><i class="check-icon">✔</i> Driver Safety</span>
+      <span><i class="check-icon">✔</i> Non-Intrusive</span>
+    </div>
+    <div class="hero-heading">
+      <h1><span>Driver</span> Drowsiness Detection</h1>
+    </div>
+    <div class="cta-button">
+      <a href="/login">Get Started</a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="info-section" id="features">
+    <div class="info-container">
+      <div class="info-block">
+        <h2>Real-Time Monitoring</h2>
+        <p>Constantly analyzes driver’s eye and head position to detect signs of drowsiness.</p>
+      </div>
+      <div class="info-block">
+        <h2>Instant Alerts</h2>
+        <p>Audio and visual alerts are triggered immediately to keep the driver attentive.</p>
+      </div>
+      <div class="info-block">
+        <h2>Smart Analytics</h2>
+        <p>Records drowsiness events for performance tracking and safety reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section" id="about">
+    <div class="team-container">
+      <h2 class="team-title">Our Team</h2>
+      <p class="team-subtitle">Our specialists are our pride. These people ensure your ride is safe, smart, and secure.</p>
+      <div class="team-grid" style="display: flex;gap: 10px;">
+        <div class="team-member">
+          <img src="/static/images/team1.jpg" alt="Sushant">
+          <h3>Parshv Athane</h3>
+          <p class="role">Project Lead | backend |</p>
+          <div class="socials">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-github"></i>
+          </div>
+          <p class="email">parshvathane02@gmail.com</p>
         </div>
-    </main>
-    <!-- Background Video -->
-    <video autoplay muted loop id="bg-video">
-        <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
-    </video>
+        <div class="team-member">
+          <img src="/static/images/team2.jpg" alt="Gaytri">
+          <h3>Srujan Pote</h3>
+          <p class="role">UX Designer | </p>
+          <div class="socials">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-behance"></i>
+          </div>
+          <p class="email">mr.morningstar246@gmail.com</p>
+        </div>
+        <div class="team-member">
+          <img src="/static/images/team3.jpg" alt="Vinayak">
+          <h3>Vinayak Mali</h3>
+          <p class="role"> Developer |</p>
+          <div class="socials">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-github"></i>
+          </div>
+          <p class="email">malivinayak2006@gmail.com.com</p>
+        </div>
+        <div class="team-member">
+          <img src="/static/images/team4.jpg" alt="Prachi">
+          <h3>Sushant Khadake</h3>
+          <p class="role">frontend developer | </p>
+          <div class="socials">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-github"></i>
+          </div>
+          <p class="email">Sushantkhadake16@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Script for Navigation -->
-    <script>
-        function openhome() {
-            window.location.href = '/';
-        }
+  <video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='bg.mp4') }}" type="video/mp4">
+  </video>
 
-        function openlogin() {
-            window.location.href = '/login';
-        }
-
-        function opensignup() {
-            window.location.href = '/register';
-        }
-
-        function openlearn() {
-            window.location.href = '/login';
-        }
-    </script>
+  <script>
+    function navigateTo(path) {
+      window.location.href = path;
+    }
+  </script>
 </body>
-
 </html>
